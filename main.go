@@ -6,6 +6,10 @@ func zeroval(ival int) {
 	ival = 0
 }
 
+/**
+* & and * --> & is get the pointers (usually an address in memory), * is Derefrence
+*/
+
 // with pointers
 func zeroptr(iptr *int) {
 	*iptr = 0 // * disini diartikan meng-pointerkan dari memory address ke current value pd address variable
