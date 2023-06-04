@@ -110,13 +110,18 @@ func main() {
 	toChange2 := "hello2"
 	fmt.Println(toChange2) // before
 	cantChangeValue(toChange2)
-	fmt.Println(toChange2) // after, can't change the value because the param of cantChangeValue is not pointer
+	fmt.Println(toChange2) // after, can't change the value because the param of cantChangeValue is not a pointer
 
 	toChange3 := "hello3"
 	fmt.Println(toChange3) // before
 	toChange3 = changeValue2(toChange3)
 	fmt.Println(toChange3) // after, value change by copying a value from variable inside function
 	// End of 5 ==================================================== //
+
+	// 6 =========================================================== //
+	var dbTest *DBConfig = BuildDBConfig() // sample from project go-rest-api https://github.com/joewilson27/go-rest-api
+	fmt.Println(dbTest)
+	// End of 6 ==================================================== //
 
 }
 
@@ -131,4 +136,23 @@ func cantChangeValue(str string) {
 func changeValue2(str string) string {
 	str = "changed, but copying value not change the reference"
 	return str
+}
+
+type DBConfig struct {
+	Host     string
+	Port     int
+	User     string
+	DBName   string
+	Password string
+}
+
+func BuildDBConfig() *DBConfig {
+	dbConfig := DBConfig{
+		Host:     "localhost",
+		Port:     3306,
+		User:     "root",
+		Password: "",
+		DBName:   "go-rest-api",
+	}
+	return &dbConfig
 }
